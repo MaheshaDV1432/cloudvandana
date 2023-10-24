@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Survey Form</title>
+  <style>
+    .fset{
+      width: 600px;
+      margin-top: 50px;
+      margin-left: 350px;
+    }
+    h1{
+      text-align: center;
+    }
+
+    .button{
+      background-color: blue;
+    }
+  </style>
+  <script>
+    function validateForm() 
+    {
+      var firstName = document.forms["surveyForm"]["firstName"].value;
+      var lastName = document.forms["surveyForm"]["lastName"].value;
+      var dob = document.forms["surveyForm"]["dob"].value;
+      var country = document.forms["surveyForm"]["country"].value;
+      var profession = document.forms["surveyForm"]["profession"].value;
+      var email = document.forms["surveyForm"]["email"].value;
+      var mobile = document.forms["surveyForm"]["mobile"].value;
+      var gender = "";
+      
+      var checkboxes = document.getElementsByName("gender");
+      for (var i = 0; i < checkboxes.length; i++) 
+      {
+        if (checkboxes[i].checked) {
+          gender += checkboxes[i].value + "";
+        }
+      }
+
+      if (firstName == "" || lastName == "" || dob == "" || country == "Select" || gender == "" || profession == "" || email == "" || mobile == "") 
+      {
+        alert("Please fill in all required fields.");
+        return false;
+      } 
+      else 
+      {
+        var popupText = "First Name: " + firstName + "\n" +
+                        "Last Name: " + lastName + "\n" +
+                        "Date of Birth: " + dob + "\n" +
+                        "Country: " + country + "\n" +
+                        "Gender: " + gender + "\n" +
+                        "Profession: " + profession + "\n" +
+                        "Email: " + email + "\n" +
+                        "Mobile Number: " + mobile;
+        alert(popupText);
+        document.forms["surveyForm"].reset();
+        return false;
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Customer Survey Form</h1>
+  <fieldset class="fset">
+  <form name="surveyForm" onsubmit="return validateForm()">
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" name="firstName" required><br><br>
+
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" name="lastName" required><br><br>
+
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" name="dob" required><br><br>
+
+    <label for="country">Country:</label>
+    <select id="country" name="country" required>
+      <option value="Select">Select</option>
+      <option value="America">America</option>
+      <option value="Bangladesh">Bangladesh</option>
+      <option value="Canada">Canada</option>
+      <option value="Denmrk">Denmrk</option>
+      <option value="England">England</option>
+      <option value="France">France</option>
+      <option value="Gaana">Gaana</option>
+      <option value="Hangkong">Hangkong</option>
+      <option value="India">India</option>
+      <option value="Japan">Japan</option>       
+    </select><br><br>
+
+    <label>Gender:</label>
+    <input type="checkbox" name="gender" value="Male"> Male
+    <input type="checkbox" name="gender" value="Female"> Female
+    <input type="checkbox" name="gender" value="Other"> Other<br><br>
+
+    <label for="profession">Profession:</label>
+    <input type="text" id="profession" name="profession" required><br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="mobile">Mobile Number:</label>
+    <input type="tel" id="mobile" name="mobile" required><br><br>
+
+    <!-- <input type="submit" value="Submit"> -->
+    <button type="submit">submit</button>
+    <input type="reset" value="Reset">
+  </form>
+  </fieldset>
+</body>
+</html>
